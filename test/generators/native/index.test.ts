@@ -5,6 +5,17 @@ import fs from 'fs';
 
 describe('agl:native', () => {
 
+    const project_related_answers = {
+        "project.name": "agl-generator-app-example",
+        "project.pretty_name": "AGL generator app example",
+        "project.version": "1.0.0",
+        "project.description": "This is an AGL example app generated using yeoman.",
+        "project.url": "https://github.com/example/agl-example-app.git",
+        "project.author": "Example User",
+        "project.author_mail": "example.man@test.fake",
+        "project.license": "LICENSE_EXAMPLE"
+    };
+
     it('test that generator creates expected file tree structure', async () => {
         const result: string = await run(path.join(__dirname, '../../../generators/native'))
             .toPromise();
@@ -20,13 +31,14 @@ describe('agl:native', () => {
 
     it('test that generator creates expected content for files in the tree structure', async () => {
         const result: string = await run(path.join(__dirname, '../../../generators/native'))
+            .withPrompts(project_related_answers)
             .toPromise();
         assert.equalsFileContent(`${result}/autobuild/agl/autobuild`, 
             fs.readFileSync(path.join(__dirname, '../../../generators/native/templates/autobuild/agl/autobuild.sample'), 'utf-8'));
         assert.equalsFileContent(`${result}/autobuild/linux/autobuild`,
             fs.readFileSync(path.join(__dirname, '../../../generators/native/templates/autobuild/linux/autobuild.sample'), 'utf-8'));
         assert.equalsFileContent(`${result}/conf.d/cmake/config.cmake`, 
-            fs.readFileSync(path.join(__dirname, '../../../generators/native/templates/conf.d/cmake/config.cmake.sample'), 'utf-8'));
+            fs.readFileSync(path.join(__dirname, '../../expected/native/config.cmake.expect'), 'utf-8'));
         assert.equalsFileContent(`${result}/conf.d/wgt/config.xml`, 
             fs.readFileSync(path.join(__dirname, '../../../generators/native/templates/conf.d/wgt/config.xml.in'), 'utf-8'));
         assert.equalsFileContent(`${result}/app/CMakeLists.txt`,
@@ -36,6 +48,6 @@ describe('agl:native', () => {
         assert.equalsFileContent(`${result}/CMakeLists.txt`, 
             fs.readFileSync(path.join(__dirname, '../../../generators/native/templates/CMakeLists.txt.sample'), 'utf-8'));
         assert.equalsFileContent(`${result}/README.md`, 
-            fs.readFileSync(path.join(__dirname, '../../../generators/native/templates/README.md.sample'), 'utf-8'));
+            fs.readFileSync(path.join(__dirname, '../../expected/native/README.md.expect'), 'utf-8'));
     });
 });

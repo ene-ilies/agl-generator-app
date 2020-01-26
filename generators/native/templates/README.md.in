@@ -1,12 +1,12 @@
-# helloworld-native-application
+# <%= project.pretty_name %>
 
 A application using binding example for AGL
 
 ## Setup 
 
 ```bash
-git clone --recursive https://github.com/iotbzh/helloworld-native-application.git
-cd helloworld-native-application
+git clone <%= project.url %>
+cd <%= project.name %>
 ```
 
 ## Build  for AGL
@@ -30,7 +30,7 @@ cd helloworld-native-application
 
 ```bash
 export YOUR_BOARD_IP=192.168.1.X
-export APP_NAME=helloworld-native-application
+export APP_NAME=<%= project.name %>
 scp build/${APP_NAME}.wgt root@${YOUR_BOARD_IP}:/tmp
 #install the widget
 ssh root@${YOUR_BOARD_IP} afm-util install /tmp/${APP_NAME}.wgt
@@ -61,7 +61,7 @@ ssh root@${YOUR_BOARD_IP} rm /tmp/helloworld.log
 
 # Activate authentification security
 
-The security is actived in file **conf.d/wgt/config.xml.in** by:
+The security is actived in file **conf.d/wgt/config.xml** by:
 
 ```xml
   <feature name="urn:AGL:widget:required-permission">
@@ -71,5 +71,5 @@ The security is actived in file **conf.d/wgt/config.xml.in** by:
 
 To disable security
 
-* remove the feature section named **urn:AGL:widget:required-permission** from the xml file **conf.d/wgt/config.xml.in**
+* remove the feature section named **urn:AGL:widget:required-permission** from the xml file **conf.d/wgt/config.xml**
 * rebuild your application

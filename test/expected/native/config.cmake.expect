@@ -18,15 +18,15 @@
 
 # Project Info
 # ------------------
-set(PROJECT_NAME example)
-set(PROJECT_VERSION "0.0")
-set(PROJECT_PRETTY_NAME "Example")
-set(PROJECT_DESCRIPTION "AGL application example")
-set(PROJECT_URL "https://gerrit.automotivelinux.org/gerrit/apps/app-templates")
+set(PROJECT_NAME agl-generator-app-example)
+set(PROJECT_VERSION "1.0.0")
+set(PROJECT_PRETTY_NAME "AGL generator app example")
+set(PROJECT_DESCRIPTION "This is an AGL example app generated using yeoman.")
+set(PROJECT_URL "https://github.com/example/agl-example-app.git")
 set(PROJECT_ICON "icon.png")
-set(PROJECT_AUTHOR "Last Name, First Name")
-set(PROJECT_AUTHOR_MAIL "example.man@bigouden.bzh")
-set(PROJECT_LICENSE "APL2.0")
+set(PROJECT_AUTHOR "Example User")
+set(PROJECT_AUTHOR_MAIL "example.man@test.fake")
+set(PROJECT_LICENSE "LICENSE_EXAMPLE")
 set(PROJECT_LANGUAGES,"C")
 
 # Where are stored default templates files from submodule or subtree app-templates in your project tree
