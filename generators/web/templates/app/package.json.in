@@ -1,0 +1,22 @@
+{
+  "name": "<%= project.name %>",
+  "version": "<%= project.version %>",
+  "description": "<%= project.description %>",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "<%= project.url %>"
+  },
+  "keywords": [
+    "web",
+    "agl",
+    "automotive"
+  ],
+  "author": "<%= project.author %>",
+  "license": "<%= project.license %>",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}

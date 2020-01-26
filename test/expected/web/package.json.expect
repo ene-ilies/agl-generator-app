@@ -1,0 +1,22 @@
+{
+  "name": "agl-generator-app-example",
+  "version": "1.0.0",
+  "description": "This is an AGL example app generated using yeoman.",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/example/agl-example-app.git"
+  },
+  "keywords": [
+    "web",
+    "agl",
+    "automotive"
+  ],
+  "author": "Example User",
+  "license": "LICENSE_EXAMPLE",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
