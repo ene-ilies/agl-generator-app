@@ -1,16 +1,14 @@
 {
-  "name": "agl-generator-app",
+  "name": "generator-agl",
   "version": "1.0.0",
   "description": "Yeoman generator for Automotive Grade Linux (AGL) app",
-  "main": "index.js",
   "scripts": {
     "test": "mocha -r ts-node/register test/**/*.test.ts test/**/**/*.test.ts",
-    "build": "tsc && node build/app/index.js",
-    "tsc": "tsc"
+    "build": "tsc"
   },
   "files": [
-    "generators",
-    "utils"
+    "generators/native",
+    "generators/web"
   ],
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 import fs from "fs-extra";
-import { createBaseDirStructure, templateReadFillAndWrite } from "../../utils/generatorUtils";
-import { ReadTemplateError, WriteTemplateError } from "../../utils/errors";
+import { createBaseDirStructure, templateReadFillAndWrite } from "../../src/utils/generatorUtils";
+import { ReadTemplateError, WriteTemplateError } from "../../src/utils/errors";
 import { expect } from "chai";
 import sinon from "sinon";
 
