@@ -6,7 +6,7 @@ A application using binding example for AGL
 
 ```bash
 git clone https://github.com/example/agl-example-app.git
-cd agl-generator-app-example
+cd agl-generator-web-example
 ```
 
 ## Build  for AGL
@@ -30,7 +30,7 @@ cd agl-generator-app-example
 
 ```bash
 export YOUR_BOARD_IP=192.168.1.X
-export APP_NAME=agl-generator-app-example
+export APP_NAME=agl-generator-web-example
 scp build/${APP_NAME}.wgt root@${YOUR_BOARD_IP}:/tmp
 #install the widget
 ssh root@${YOUR_BOARD_IP} afm-util install /tmp/${APP_NAME}.wgt

@@ -1,5 +1,5 @@
 {
-  "name": "agl-generator-app-example",
+  "name": "agl-generator-web-example",
   "version": "1.0.0",
   "description": "This is an AGL example app generated using yeoman.",
   "scripts": {

@@ -1,5 +1,6 @@
 import { run } from 'yeoman-test';
 import assert from 'yeoman-assert';
+import chai from 'chai';
 import path from 'path';
 import fs from 'fs';
 
@@ -17,37 +18,42 @@ describe('agl:native', () => {
     };
 
     it('test that generator creates expected file tree structure', async () => {
-        const result: string = await run(path.join(__dirname, '../../../generators/native'))
+        const result: string = await run(path.join(__dirname, '../../../src/native'))
+            .withPrompts({
+                "project.name": project_related_answers["project.name"]
+            })
             .toPromise();
-        assert.file(`${result}/autobuild/agl/autobuild`);
-        assert.file(`${result}/autobuild/linux/autobuild`);
-        assert.file(`${result}/conf.d/cmake/config.cmake`);
-        assert.file(`${result}/conf.d/wgt/config.xml`);
-        assert.file(`${result}/app/CMakeLists.txt`);
-        assert.file(`${result}/app/helloworld-native-application.c`);
-        assert.file(`${result}/CMakeLists.txt`);
-        assert.file(`${result}/README.md`);
+        const generatedProjectDir = path.join(result, project_related_answers["project.name"]);
+        assert.file(`${generatedProjectDir}/autobuild/agl/autobuild`);
+        assert.file(`${generatedProjectDir}/autobuild/linux/autobuild`);
+        assert.file(`${generatedProjectDir}/conf.d/cmake/config.cmake`);
+        assert.file(`${generatedProjectDir}/conf.d/wgt/config.xml`);
+        assert.file(`${generatedProjectDir}/app/CMakeLists.txt`);
+        assert.file(`${generatedProjectDir}/app/helloworld-native-application.c`);
+        assert.file(`${generatedProjectDir}/CMakeLists.txt`);
+        assert.file(`${generatedProjectDir}/README.md`);
     });
 
     it('test that generator creates expected content for files in the tree structure', async () => {
-        const result: string = await run(path.join(__dirname, '../../../generators/native'))
+        const result: string = await run(path.join(__dirname, '../../../src/native'))
             .withPrompts(project_related_answers)
             .toPromise();
-        assert.equalsFileContent(`${result}/autobuild/agl/autobuild`, 
-            fs.readFileSync(path.join(__dirname, '../../../generators/native/templates/autobuild/agl/autobuild.sample'), 'utf-8'));
-        assert.equalsFileContent(`${result}/autobuild/linux/autobuild`,
-            fs.readFileSync(path.join(__dirname, '../../../generators/native/templates/autobuild/linux/autobuild.sample'), 'utf-8'));
-        assert.equalsFileContent(`${result}/conf.d/cmake/config.cmake`, 
+        const generatedProjectDir = path.join(result, project_related_answers["project.name"]);
+        assert.equalsFileContent(`${generatedProjectDir}/autobuild/agl/autobuild`, 
+            fs.readFileSync(path.join(__dirname, '../../../src/native/templates/autobuild/agl/autobuild.sample'), 'utf-8'));
+        assert.equalsFileContent(`${generatedProjectDir}/autobuild/linux/autobuild`,
+            fs.readFileSync(path.join(__dirname, '../../../src/native/templates/autobuild/linux/autobuild.sample'), 'utf-8'));
+        assert.equalsFileContent(`${generatedProjectDir}/conf.d/cmake/config.cmake`, 
             fs.readFileSync(path.join(__dirname, '../../expected/native/config.cmake.expect'), 'utf-8'));
-        assert.equalsFileContent(`${result}/conf.d/wgt/config.xml`, 
-            fs.readFileSync(path.join(__dirname, '../../../generators/native/templates/conf.d/wgt/config.xml.in'), 'utf-8'));
-        assert.equalsFileContent(`${result}/app/CMakeLists.txt`,
-            fs.readFileSync(path.join(__dirname, '../../../generators/native/templates/app/CMakeLists.txt.sample'), 'utf-8'));
-        assert.equalsFileContent(`${result}/app/helloworld-native-application.c`,
-            fs.readFileSync(path.join(__dirname, '../../../generators/native/templates/app/helloworld-native-application.c.sample'), 'utf-8'));
-        assert.equalsFileContent(`${result}/CMakeLists.txt`, 
-            fs.readFileSync(path.join(__dirname, '../../../generators/native/templates/CMakeLists.txt.sample'), 'utf-8'));
-        assert.equalsFileContent(`${result}/README.md`, 
+        assert.equalsFileContent(`${generatedProjectDir}/conf.d/wgt/config.xml`, 
+            fs.readFileSync(path.join(__dirname, '../../../src/native/templates/conf.d/wgt/config.xml.in'), 'utf-8'));
+        assert.equalsFileContent(`${generatedProjectDir}/app/CMakeLists.txt`,
+            fs.readFileSync(path.join(__dirname, '../../../src/native/templates/app/CMakeLists.txt.sample'), 'utf-8'));
+        assert.equalsFileContent(`${generatedProjectDir}/app/helloworld-native-application.c`,
+            fs.readFileSync(path.join(__dirname, '../../../src/native/templates/app/helloworld-native-application.c.sample'), 'utf-8'));
+        assert.equalsFileContent(`${generatedProjectDir}/CMakeLists.txt`, 
+            fs.readFileSync(path.join(__dirname, '../../../src/native/templates/CMakeLists.txt.sample'), 'utf-8'));
+        assert.equalsFileContent(`${generatedProjectDir}/README.md`, 
             fs.readFileSync(path.join(__dirname, '../../expected/native/README.md.expect'), 'utf-8'));
     });
 });

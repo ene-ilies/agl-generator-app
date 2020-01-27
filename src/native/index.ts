@@ -6,7 +6,6 @@ export default class AGLNativeGenerator extends Generator {
 
     constructor(args: string|string[], options: {}) {
         super(args, options);
-        
     }
 
     async prompting() {
@@ -17,6 +16,7 @@ export default class AGLNativeGenerator extends Generator {
 
     createFilesTree() {
         this.log('Creating files tree...');
+        this.destinationRoot(this.answers.project.name);
         this.fs.copy(this.templatePath('autobuild/agl/autobuild.sample'), this.destinationPath('autobuild/agl/autobuild'));
         this.fs.copy(this.templatePath('autobuild/linux/autobuild.sample'), this.destinationPath('autobuild/linux/autobuild'));
         this.fs.copyTpl(this.templatePath('conf.d/cmake/config.cmake.in'), this.destinationPath('conf.d/cmake/config.cmake'), this.answers);
