@@ -1,8 +1,14 @@
-const { src, dest } = require('gulp');
+const gulp = require('gulp');
+const clean = require('gulp-clean');
 
-function package() {
-    return src('src/**/templates/**/*')
-        .pipe(dest('generators'));    
-}
+gulp.task('clean', function () {
+    return gulp.src('generators/', { read: false, allowEmpty: true })
+        .pipe(clean());
+});
 
-exports.default = package;
+gulp.task('build', function () {
+    return gulp.src('src/**/templates/**/*')
+        .pipe(gulp.dest('generators'));  
+});
+
+gulp.task('default', gulp.series('clean', 'build'));
