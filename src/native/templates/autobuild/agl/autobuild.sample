@@ -15,7 +15,7 @@
 # limitations under the License.
 
 THISFILE  := $(lastword $(MAKEFILE_LIST))
-BUILD_DIR := $(abspath $(dir $(THISFILE)/../../../../..)/build)
+BUILD_DIR := $(abspath $(dir $(THISFILE)/../../../..)/build)
 DEST      := ${BUILD_DIR}/target
 
 .PHONY: all clean distclean configure build package help update

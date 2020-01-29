@@ -31,7 +31,7 @@ set(PROJECT_LANGUAGES,"C")
 
 # Where are stored default templates files from submodule or subtree app-templates in your project tree
 # relative to the root project directory
-set(PROJECT_APP_TEMPLATES_DIR "conf.d/app-templates")
+set(PROJECT_CMAKE_CONF_DIR "conf.d/cmake")
 
 # Where are stored your external libraries for your project. This is 3rd party library that you don't maintain
 # but used and must be built and linked.
@@ -45,8 +45,7 @@ set(PROJECT_APP_TEMPLATES_DIR "conf.d/app-templates")
 
 # Compilation Mode (DEBUG, RELEASE)
 # ----------------------------------
-set(CMAKE_BUILD_TYPE "DEBUG")
-set(USE_EFENCE 1)
+set(CMAKE_BUILD_TYPE "RELEASE")
 
 # Kernel selection if needed. You can choose between a
 # mandatory version to impose a minimal version.
@@ -69,16 +68,12 @@ set (gcc_minimal_version 4.9)
 # PKG_CONFIG required packages
 # -----------------------------
 set (PKG_REQUIRED_LIST
+	libafbwsc
 	json-c
 	libsystemd>=222
 	afb-daemon
 	libmicrohttpd>=0.9.55
 )
-
-# Prefix path where will be installed the files
-# Default: /usr/local (need root permission to write in)
-# ------------------------------------------------------
-#set(CMAKE_INSTALL_PREFIX $ENV{HOME}/opt)
 
 # Customize link option
 # -----------------------------
@@ -128,13 +123,13 @@ set (PKG_REQUIRED_LIST
 
 # (BUG!!!) as PKG_CONFIG_PATH does not work [should be an env variable]
 # ---------------------------------------------------------------------
+set(CMAKE_INSTALL_PREFIX $ENV{HOME}/opt)
 set(CMAKE_PREFIX_PATH ${CMAKE_INSTALL_PREFIX}/lib64/pkgconfig ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
 set(LD_LIBRARY_PATH ${CMAKE_INSTALL_PREFIX}/lib64 ${CMAKE_INSTALL_PREFIX}/lib)
 
 # Optional location for config.xml.in
 # -----------------------------------
-#set(WIDGET_ICON conf.d/wgt/${PROJECT_ICON} CACHE PATH "Path to the widget icon")
-#set(WIDGET_CONFIG_TEMPLATE ${CMAKE_CURRENT_SOURCE_DIR}/conf.d/wgt/config.xml.in CACHE PATH "Path to widget config file template (config.xml.in)")
+set(WIDGET_CONFIG_TEMPLATE ${CMAKE_CURRENT_SOURCE_DIR}/conf.d/wgt/config.xml.in)
 
 # Mandatory widget Mimetype specification of the main unit
 # --------------------------------------------------------------------------
@@ -151,14 +146,14 @@ set(LD_LIBRARY_PATH ${CMAKE_INSTALL_PREFIX}/lib64 ${CMAKE_INSTALL_PREFIX}/lib)
 #	content.src designates the relative path of the binary.
 #	For such application, only security setup is made.
 #
-set(WIDGET_TYPE MimeType_Not_Set)
+set(WIDGET_TYPE application/vnd.agl.native)
 
 # Mandatory Widget entry point file of the main unit
 # --------------------------------------------------------------
 # This is the file that will be executed, loaded,
 # at launch time by the application framework.
 #
-set(WIDGET_ENTRY_POINT EntryPoint_Path_Not_Set)
+set(WIDGET_ENTRY_POINT bin/helloworld-native-application)
 
 # Optional dependencies order
 # ---------------------------
@@ -171,6 +166,10 @@ set(WIDGET_ENTRY_POINT EntryPoint_Path_Not_Set)
 # Optional extra libraries
 # -------------------------
 #set(EXTRA_LINK_LIBRARIES)
+
+# Optional force binding installation
+# ------------------------------------
+# set(BINDINGS_INSTALL_PREFIX PrefixPath )
 
 # Optional force binding Linking flag
 # ------------------------------------
@@ -191,14 +190,7 @@ set(AFB_REMPORT "1234" CACHE PATH "Default binder listening port")
 set(CLOSING_MESSAGE "Typical binding launch: afb-daemon --port=${AFB_REMPORT} --workdir=${CMAKE_BINARY_DIR}/package --ldpaths=lib --roothttp=htdocs  --token=\"${AFB_TOKEN}\" --tracereq=common --verbose")
 set(PACKAGE_MESSAGE "Install widget file using in the target : afm-util install ${PROJECT_NAME}.wgt")
 
-# Optional schema validator about now only XML, LUA and JSON
-# are supported
-#------------------------------------------------------------
-#set(LUA_CHECKER "luac" "-p" CACHE STRING "LUA compiler")
-#set(XML_CHECKER "xmllint" CACHE STRING "XML linter")
-#set(JSON_CHECKER "json_verify" CACHE STRING "JSON linter")
-
 # This include is mandatory and MUST happens at the end
 # of this file, else you expose you to unexpected behavior
 # -----------------------------------------------------------
-include(${PROJECT_APP_TEMPLATES_DIR}/cmake/common.cmake)
+include(CMakeAfbTemplates)

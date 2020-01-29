@@ -27,7 +27,7 @@ describe('agl:native', () => {
         assert.file(`${generatedProjectDir}/autobuild/agl/autobuild`);
         assert.file(`${generatedProjectDir}/autobuild/linux/autobuild`);
         assert.file(`${generatedProjectDir}/conf.d/cmake/config.cmake`);
-        assert.file(`${generatedProjectDir}/conf.d/wgt/config.xml`);
+        assert.file(`${generatedProjectDir}/conf.d/wgt/config.xml.in`);
         assert.file(`${generatedProjectDir}/app/CMakeLists.txt`);
         assert.file(`${generatedProjectDir}/app/helloworld-native-application.c`);
         assert.file(`${generatedProjectDir}/CMakeLists.txt`);
@@ -54,7 +54,7 @@ describe('agl:native', () => {
             fs.readFileSync(path.join(__dirname, '../../../src/native/templates/autobuild/linux/autobuild.sample'), 'utf-8'));
         assert.equalsFileContent(`${generatedProjectDir}/conf.d/cmake/config.cmake`, 
             fs.readFileSync(path.join(__dirname, '../../expected/native/config.cmake.expect'), 'utf-8'));
-        assert.equalsFileContent(`${generatedProjectDir}/conf.d/wgt/config.xml`, 
+        assert.equalsFileContent(`${generatedProjectDir}/conf.d/wgt/config.xml.in`, 
             fs.readFileSync(path.join(__dirname, '../../../src/native/templates/conf.d/wgt/config.xml.in'), 'utf-8'));
         assert.equalsFileContent(`${generatedProjectDir}/app/CMakeLists.txt`,
             fs.readFileSync(path.join(__dirname, '../../../src/native/templates/app/CMakeLists.txt.sample'), 'utf-8'));

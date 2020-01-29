@@ -27,7 +27,7 @@ describe('agl:web', () => {
         assert.file(`${generatedProjectDir}/autobuild/agl/autobuild`);
         assert.file(`${generatedProjectDir}/autobuild/linux/autobuild`);
         assert.file(`${generatedProjectDir}/conf.d/cmake/config.cmake`);
-        assert.file(`${generatedProjectDir}/conf.d/wgt/config.xml`);
+        assert.file(`${generatedProjectDir}/conf.d/wgt/config.xml.in`);
         assert.file(`${generatedProjectDir}/app/CMakeLists.txt`);
         assert.file(`${generatedProjectDir}/app/package.json`);
         assert.file(`${generatedProjectDir}/CMakeLists.txt`);
@@ -54,7 +54,7 @@ describe('agl:web', () => {
             fs.readFileSync(path.join(__dirname, '../../../src/web/templates/autobuild/linux/autobuild.sample'), 'utf-8'));
         assert.equalsFileContent(`${generatedProjectDir}/conf.d/cmake/config.cmake`, 
             fs.readFileSync(path.join(__dirname, '../../expected/web/config.cmake.expect'), 'utf-8'));
-        assert.equalsFileContent(`${generatedProjectDir}/conf.d/wgt/config.xml`, 
+        assert.equalsFileContent(`${generatedProjectDir}/conf.d/wgt/config.xml.in`, 
             fs.readFileSync(path.join(__dirname, '../../../src/web/templates/conf.d/wgt/config.xml.in'), 'utf-8'));
         assert.equalsFileContent(`${generatedProjectDir}/app/CMakeLists.txt`,
             fs.readFileSync(path.join(__dirname, '../../../src/web/templates/app/CMakeLists.txt.sample'), 'utf-8'));
