@@ -1,6 +1,7 @@
 import { run } from 'yeoman-test';
 import assert from 'yeoman-assert';
 import path from 'path';
+import chai from 'chai';
 import fs from 'fs';
 
 describe('agl:web', () => {
@@ -31,6 +32,15 @@ describe('agl:web', () => {
         assert.file(`${generatedProjectDir}/app/package.json`);
         assert.file(`${generatedProjectDir}/CMakeLists.txt`);
         assert.file(`${generatedProjectDir}/README.md`);
+    });
+
+    it('test that generator sets execution permissions to files that have to be executed', async () => {
+        const result: string = await run(path.join(__dirname, '../../../src/web'))
+            .withPrompts(project_related_answers)
+            .toPromise();
+        const generatedProjectDir = path.join(result, project_related_answers["project.name"]);
+        chai.expect(() => fs.accessSync(`${generatedProjectDir}/autobuild/agl/autobuild`, fs.constants.X_OK)).not.to.throw();
+        chai.expect(() => fs.accessSync(`${generatedProjectDir}/autobuild/linux/autobuild`, fs.constants.X_OK)).not.to.throw();
     });
 
     it('test that generator creates expected content for files in the tree structure', async () => {

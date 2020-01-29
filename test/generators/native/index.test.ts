@@ -34,6 +34,15 @@ describe('agl:native', () => {
         assert.file(`${generatedProjectDir}/README.md`);
     });
 
+    it('test that generator sets execution permissions to files that have to be executed', async () => {
+        const result: string = await run(path.join(__dirname, '../../../src/native'))
+            .withPrompts(project_related_answers)
+            .toPromise();
+        const generatedProjectDir = path.join(result, project_related_answers["project.name"]);
+        chai.expect(() => fs.accessSync(`${generatedProjectDir}/autobuild/agl/autobuild`, fs.constants.X_OK)).not.to.throw();
+        chai.expect(() => fs.accessSync(`${generatedProjectDir}/autobuild/linux/autobuild`, fs.constants.X_OK)).not.to.throw();
+    });
+
     it('test that generator creates expected content for files in the tree structure', async () => {
         const result: string = await run(path.join(__dirname, '../../../src/native'))
             .withPrompts(project_related_answers)
