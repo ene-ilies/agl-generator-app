@@ -24,6 +24,8 @@ export default class AGLWebGenerator extends Generator {
         this.fs.copy(this.templatePath('conf.d/wgt/config.xml.in'), this.destinationPath('conf.d/wgt/config.xml.in'));
         this.fs.copy(this.templatePath('app/CMakeLists.txt.sample'), this.destinationPath('app/CMakeLists.txt'));
         this.fs.copyTpl(this.templatePath('app/package.json.in'), this.destinationPath('app/package.json'), this.answers);
+        this.fs.copy(this.templatePath('app/src/index.js.sample'), this.destinationPath('app/src/index.js'));
+        this.fs.copy(this.templatePath('app/src/index.html.sample'), this.destinationPath('app/src/index.html'));
         this.fs.copy(this.templatePath('CMakeLists.txt.sample'), this.destinationPath('CMakeLists.txt'));
         this.fs.copyTpl(this.templatePath('README.md.in'), this.destinationPath('README.md'), this.answers);
         this.log('Finished creating files tree...');

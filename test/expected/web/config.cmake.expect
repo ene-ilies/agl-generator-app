@@ -31,7 +31,7 @@ set(PROJECT_LANGUAGES,"C")
 
 # Where are stored default templates files from submodule or subtree app-templates in your project tree
 # relative to the root project directory
-set(PROJECT_APP_TEMPLATES_DIR "conf.d/app-templates")
+set(PROJECT_CMAKE_CONF_DIR "conf.d")
 
 # Where are stored your external libraries for your project. This is 3rd party library that you don't maintain
 # but used and must be built and linked.
@@ -46,7 +46,7 @@ set(PROJECT_APP_TEMPLATES_DIR "conf.d/app-templates")
 # Compilation Mode (DEBUG, RELEASE)
 # ----------------------------------
 set(CMAKE_BUILD_TYPE "DEBUG")
-set(USE_EFENCE 1)
+#set(USE_EFENCE 1)
 
 # Kernel selection if needed. You can choose between a
 # mandatory version to impose a minimal version.
@@ -78,53 +78,12 @@ set (PKG_REQUIRED_LIST
 # Prefix path where will be installed the files
 # Default: /usr/local (need root permission to write in)
 # ------------------------------------------------------
-#set(CMAKE_INSTALL_PREFIX $ENV{HOME}/opt)
-
-# Customize link option
-# -----------------------------
-#list(APPEND link_libraries -an-option)
+set(CMAKE_INSTALL_PREFIX $ENV{HOME}/opt)
 
 # Compilation options definition
 # Use CMake generator expressions to specify only for a specific language
-# Values are prefilled with default options that is currently used.
-# Either separate options with ";", or each options must be quoted separately
-# DO NOT PUT ALL OPTION QUOTED AT ONCE , COMPILATION COULD FAILED !
-# ----------------------------------------------------------------------------
-#set(COMPILE_OPTIONS
-# -Wall
-# -Wextra
-# -Wconversion
-# -Wno-unused-parameter
-# -Wno-sign-compare
-# -Wno-sign-conversion
-# -Werror=maybe-uninitialized
-# -Werror=implicit-function-declaration
-# -ffunction-sections
-# -fdata-sections
-# -fPIC
-# CACHE STRING "Compilation flags")
-#set(C_COMPILE_OPTIONS "" CACHE STRING "Compilation flags for C language.")
-#set(CXX_COMPILE_OPTIONS "" CACHE STRING "Compilation flags for C++ language.")
-#set(PROFILING_COMPILE_OPTIONS
-# -g
-# -O0
-# -pg
-# -Wp,-U_FORTIFY_SOURCE
-# CACHE STRING "Compilation flags for PROFILING build type.")
-#set(DEBUG_COMPILE_OPTIONS
-# -g
-# -ggdb
-# -Wp,-U_FORTIFY_SOURCE
-# CACHE STRING "Compilation flags for DEBUG build type.")
-#set(CCOV_COMPILE_OPTIONS
-# -g
-# -O2
-# --coverage
-# CACHE STRING "Compilation flags for CCOV build type.")
-#set(RELEASE_COMPILE_OPTIONS
-# -g
-# -O2
-# CACHE STRING "Compilation flags for RELEASE build type.")
+# -----------------------------------------------------------------------
+add_compile_options()
 
 # (BUG!!!) as PKG_CONFIG_PATH does not work [should be an env variable]
 # ---------------------------------------------------------------------
@@ -133,8 +92,8 @@ set(LD_LIBRARY_PATH ${CMAKE_INSTALL_PREFIX}/lib64 ${CMAKE_INSTALL_PREFIX}/lib)
 
 # Optional location for config.xml.in
 # -----------------------------------
-#set(WIDGET_ICON conf.d/wgt/${PROJECT_ICON} CACHE PATH "Path to the widget icon")
-#set(WIDGET_CONFIG_TEMPLATE ${CMAKE_CURRENT_SOURCE_DIR}/conf.d/wgt/config.xml.in CACHE PATH "Path to widget config file template (config.xml.in)")
+#set(WIDGET_ICON "\"conf.d/wgt/${PROJECT_ICON}\"" CACHE PATH "Path to the widget icon")
+set(WIDGET_CONFIG_TEMPLATE ${CMAKE_CURRENT_SOURCE_DIR}/conf.d/wgt/config.xml.in)
 
 # Mandatory widget Mimetype specification of the main unit
 # --------------------------------------------------------------------------
@@ -151,14 +110,14 @@ set(LD_LIBRARY_PATH ${CMAKE_INSTALL_PREFIX}/lib64 ${CMAKE_INSTALL_PREFIX}/lib)
 #	content.src designates the relative path of the binary.
 #	For such application, only security setup is made.
 #
-set(WIDGET_TYPE MimeType_Not_Set)
+set(WIDGET_TYPE text/html)
 
 # Mandatory Widget entry point file of the main unit
 # --------------------------------------------------------------
 # This is the file that will be executed, loaded,
 # at launch time by the application framework.
 #
-set(WIDGET_ENTRY_POINT EntryPoint_Path_Not_Set)
+set(WIDGET_ENTRY_POINT htdocs/index.html)
 
 # Optional dependencies order
 # ---------------------------
@@ -201,4 +160,4 @@ set(PACKAGE_MESSAGE "Install widget file using in the target : afm-util install 
 # This include is mandatory and MUST happens at the end
 # of this file, else you expose you to unexpected behavior
 # -----------------------------------------------------------
-include(${PROJECT_APP_TEMPLATES_DIR}/cmake/common.cmake)
+include(CMakeAfbTemplates)

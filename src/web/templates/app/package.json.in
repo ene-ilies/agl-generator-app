@@ -3,6 +3,8 @@
   "version": "<%= project.version %>",
   "description": "<%= project.description %>",
   "scripts": {
+    "build-dev": "webpack -d --mode development",
+    "build-prod": "webpack -p --mode production"
   },
   "repository": {
     "type": "git",
@@ -18,5 +20,8 @@
   "dependencies": {
   },
   "devDependencies": {
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "html-webpack-plugin": "^3.2.0"
   }
 }
