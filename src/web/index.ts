@@ -23,6 +23,7 @@ export default class AGLWebGenerator extends Generator {
         this.fs.copyTpl(this.templatePath('conf.d/cmake/config.cmake.in'), this.destinationPath('conf.d/cmake/config.cmake'), this.answers);
         this.fs.copy(this.templatePath('conf.d/wgt/config.xml.in'), this.destinationPath('conf.d/wgt/config.xml.in'));
         this.fs.copy(this.templatePath('app/CMakeLists.txt.sample'), this.destinationPath('app/CMakeLists.txt'));
+        this.fs.copy(this.templatePath('app/webpack.config.js.sample'), this.destinationPath('app/webpack.config.js'));
         this.fs.copyTpl(this.templatePath('app/package.json.in'), this.destinationPath('app/package.json'), this.answers);
         this.fs.copy(this.templatePath('app/src/index.js.sample'), this.destinationPath('app/src/index.js'));
         this.fs.copy(this.templatePath('app/src/index.html.sample'), this.destinationPath('app/src/index.html'));

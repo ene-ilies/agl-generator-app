@@ -62,6 +62,8 @@ describe('agl:web', () => {
             fs.readFileSync(path.join(__dirname, '../../../src/web/templates/app/CMakeLists.txt.sample'), 'utf-8'));
         assert.equalsFileContent(`${generatedProjectDir}/app/package.json`,
             fs.readFileSync(path.join(__dirname, '../../expected/web/package.json.expect'), 'utf-8'));
+        assert.equalsFileContent(`${generatedProjectDir}/app/webpack.config.js`,
+            fs.readFileSync(path.join(__dirname, '../../../src/web/templates/app/webpack.config.js.sample'), 'utf-8'));
         assert.equalsFileContent(`${generatedProjectDir}/app/src/index.html`,
             fs.readFileSync(path.join(__dirname, '../../../src/web/templates/app/src/index.html.sample'), 'utf-8'));
         assert.equalsFileContent(`${generatedProjectDir}/app/src/index.js`,
