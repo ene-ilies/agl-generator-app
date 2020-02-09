@@ -27,3 +27,7 @@ or for AGL HTML5 app:
 yo agl:web
 ```
 then answers to the questions regarding your new app and at the end you will have a new directory with the required structure created.
+
+## License
+
+[MIT](https://github.com/ene-ilies/agl-generator-app/blob/master/LICENSE)
