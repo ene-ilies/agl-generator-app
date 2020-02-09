@@ -18,7 +18,7 @@ npm install -g generator-agl
 ```
 ## Generating initial structure for an AGL app
 
-Run a new terminal from the folder where you want you app to be generated and issue the following command for AGL native app:
+Run a new terminal from the folder where you want your app to be generated and issue the following command for AGL native app:
 ```bash
 yo agl:native
 ```
