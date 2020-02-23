@@ -1,4 +1,4 @@
-![CI](https://github.com/ene-ilies/agl-generator-app/workflows/Node.js%20CI/badge.svg)
+![Node.js CI](https://github.com/ene-ilies/agl-generator-app/workflows/Node.js%20CI/badge.svg)
 
 # Yo generator for AGL application structure.
 
