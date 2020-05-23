@@ -1,3 +1,5 @@
+![Node.js CI](https://github.com/ene-ilies/agl-generator-app/workflows/Node.js%20CI/badge.svg)
+
 # Yo generator for AGL application structure.
 
 This is a [Yeoman generator](https://yeoman.io/) that will help you getting started with writing apps for [AGL platform](https://www.automotivelinux.org/).
